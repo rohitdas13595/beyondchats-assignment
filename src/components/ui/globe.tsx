@@ -79,10 +79,10 @@ export function Globe({
   };
 
   useEffect(() => {
-    if (typeof window !== undefined) {
-      window.addEventListener("resize", onResize);
-      onResize();
-    }
+    // if (typeof window !== undefined) {
+    // window.addEventListener("resize", onResize);
+    onResize();
+    // }
 
     const globe = createGlobe(canvasRef.current!, {
       ...config,

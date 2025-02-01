@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        login: "url('/illustrations/login.png')",
+      },
       colors: {
         background: "#1e1e2e",
         foreground: "#f5e0dc",
@@ -21,7 +24,18 @@ export default {
         peach: "#fab387",
         yellow: "#f9e2af",
         green: "#a6e3a1",
-        teal: "#94e2d5",
+        teal: {
+          50: "#e0f2f1",
+          100: "#94e2d5",
+          200: "#89dceb",
+          300: "#74c7ec",
+          400: "#74c7ec",
+          500: "#74c7ec",
+          600: "#74c7ec",
+          700: "#74c7ec",
+          800: "#74c7ec",
+          900: "#74c7ec",
+        },
         sky: "#89dceb",
         sapphire: "#74c7ec",
         blue: "#89b4fa",

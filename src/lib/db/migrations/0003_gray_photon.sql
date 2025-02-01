@@ -1,0 +1,1 @@
+ALTER TABLE "messages" ADD COLUMN "ray_id" varchar(255);

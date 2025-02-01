@@ -14,3 +14,34 @@ body {
     --radius: 0.5rem;
   }
 }
+
+.sp_loader {
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #514b82;
+  -webkit-mask: radial-gradient(
+    circle closest-side at 50% 40%,
+    #0000 94%,
+    #000
+  );
+  transform-origin: 50% 40%;
+  animation: l25 1s infinite linear;
+}
+@keyframes l25 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+input {
+  /* Remove browser styles on paste */
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+input::selection {
+  background-color: transparent;
+  color: inherit;
+}

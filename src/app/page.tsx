@@ -1,6 +1,9 @@
-import { Globe } from "@/components/ui/button/glob";
 import { InteractiveHoverButton } from "@/components/ui/button/interactiveButton";
+import dynamic from "next/dynamic";
 
+const DynamicGlobe = dynamic(() =>
+  import("@/components/ui/globe").then((mod) => mod.Globe)
+);
 export default function Home() {
   return (
     <div className="flex flex-col w-full max-w-[1280px] mx-auto gap-4 h-screen px-12 lg:px-8">
@@ -24,7 +27,7 @@ export default function Home() {
           <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-peach to-yellow bg-clip-text text-center text-4xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
             Make Global Presence
           </span>
-          <Globe className="top-0" />
+          <DynamicGlobe className="top-0" />
           <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" />
         </div>
       </div>
