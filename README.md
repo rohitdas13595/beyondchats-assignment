@@ -12,16 +12,16 @@
 
 #### Tech Stack
 
-| sl  | feature    | name               | desc                                      |
-| --- | ---------- | ------------------ | ----------------------------------------- |
-| 1   | db         | psql               | free tier neon db                         |
-| 2   | framework  | Next Js            | React Js  Framework by vercel             |
-| 3   | language   | Typescript         |                                           |
-| 4   | auth       | Google, Credential | provided by NextAuth,  supports  Oauth2.0 |
-| 5   | auth token | JWT                |                                           |
-| 6   | ORM        | Drizzle ORM        |                                           |
+| sl | feature    | name               | desc                                        |
+| -- | ---------- | ------------------ | ------------------------------------------- |
+| 1  | db         | psql               | free tier neon db                           |
+| 2  | framework  | Next Js            | React Js  Framework by vercel              |
+| 3  | language   | Typescript         |                                             |
+| 4  | auth       | Google, Credential | provided by NextAuth,  supports  Oauth2.0 |
+| 5  | auth token | JWT                |                                             |
+| 6  | ORM        | Drizzle ORM        |                                             |
 
-#### DB shema
+#### DB schema
 
 ```ts
 import {
@@ -80,8 +80,8 @@ export const Chatbot = pgTable("chatbot", {
 
 #### Back End Methods
 
-- [x] API routes
-- [x] Server Actions
+- [X] API routes
+- [X] Server Actions
 
 #### Tree Structure
 
@@ -195,23 +195,32 @@ export const Chatbot = pgTable("chatbot", {
 
 #### Output Screenshots
 
+
 Landing Page
 
 ![landing](./output/landing.png)
+
+
 
 Sign In Page
 
 ![signin](./output/signin.png)
 
+
+
 SignUp Page
 
 ![signup](./output/signup.png)
+
+
 
 Chat Bot Page
 
 ![User Dashboard](./output/userdash.png)
 
+
 Chatbot Page
+
 
 ![Chat bot](./output/chat.png)
 
