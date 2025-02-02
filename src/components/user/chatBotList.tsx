@@ -126,7 +126,7 @@ export const ChatbotListComponent = ({ userId }: { userId: string }) => {
             value={query}
           />
         </div>
-        <AddChatbot userId={userId} />
+        <AddChatbot userId={userId} refetch={refetch} />
       </div>
       <div className="flex flex-col w-full hidden lg:flex">
         <DataTable

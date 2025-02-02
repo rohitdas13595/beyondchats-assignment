@@ -20,7 +20,13 @@ export const AddChatbotSchema = z.object({
 export const wesiteRegex =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
 
-export function AddChatbot({ userId }: { userId: string }) {
+export function AddChatbot({
+  userId,
+  refetch,
+}: {
+  userId: string;
+  refetch: () => void;
+}) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showName, setShowName] = useState(false);
@@ -52,6 +58,7 @@ export function AddChatbot({ userId }: { userId: string }) {
         userId: userId,
       });
       if (created) {
+        refetch();
         toast.success("Chatbot created successfully");
         router.push(`/user/bot/${created.id}`);
         return created;
