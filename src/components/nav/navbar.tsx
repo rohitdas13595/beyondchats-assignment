@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SignUpButton } from "./signupButton";
 
 export function Navbar() {
   return (
@@ -7,10 +8,9 @@ export function Navbar() {
         <Image src="/images/logo.png" alt="logo" width={50} height={50} />
         <h1 className="text-3xl font-bold text-white">Beyondchats</h1>
       </div>
-      <div></div>
-      <button className="bg-crust py-1 px-4  font-bold text-white  rounded-2xl text-white shadow-xl border border-white hover:bg-mantle">
-        Create Chat Bot
-      </button>
+      <div>
+        <SignUpButton />
+      </div>
     </div>
   );
 }

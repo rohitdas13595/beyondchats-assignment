@@ -1,5 +1,6 @@
 import { InteractiveHoverButton } from "@/components/ui/button/interactiveButton";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const DynamicGlobe = dynamic(() =>
   import("@/components/ui/globe").then((mod) => mod.Globe)
@@ -14,9 +15,11 @@ export default function Home() {
             Keep your customers glued to your site. Cut costs through
             automation.
           </p>
-          <InteractiveHoverButton className="w-fit my-12">
-            Create Chatbot for free
-          </InteractiveHoverButton>
+          <Link href="/signup">
+            <InteractiveHoverButton className="w-fit my-12">
+              Create Chatbot for free
+            </InteractiveHoverButton>
+          </Link>
         </div>
         <div className="w-full flex items-center  justify-center">
           <img src="/illustrations/home.svg" alt="" />
