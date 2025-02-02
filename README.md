@@ -85,6 +85,7 @@ export const Chatbot = pgTable("chatbot", {
 
 #### Tree Structure
 
+```bash
 ├── components.json
 ├── drizzle.config.ts
 ├── eslint.config.mjs
@@ -192,35 +193,27 @@ export const Chatbot = pgTable("chatbot", {
 │ └── middleware.ts
 ├── tailwind.config.ts
 └── tsconfig.json
+```
 
 #### Output Screenshots
-
 
 Landing Page
 
 ![landing](./output/landing.png)
 
-
-
 Sign In Page
 
 ![signin](./output/signin.png)
-
-
 
 SignUp Page
 
 ![signup](./output/signup.png)
 
-
-
 Chat Bot Page
 
 ![User Dashboard](./output/userdash.png)
 
-
 Chatbot Page
-
 
 ![Chat bot](./output/chat.png)
 
