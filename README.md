@@ -7,6 +7,8 @@
 | Project Name     | Beyond Chats Assignment                         |
 | Hosting Provider | Vercel                                          |
 | URL              | https://beyondchats-assignment-gamma.vercel.app |
+| Author           | Rohit Kumar Das                                 |
+| email            | contact@rohituno.com                            |
 
 #### Tech Stack
 
