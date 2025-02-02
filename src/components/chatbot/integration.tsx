@@ -1,11 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Clock1, SendHorizontal, X } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Iframe from "react-iframe";
 import styles from "./styles.module.css";
+import { Confetti, type ConfettiRef } from "../ui/confetti";
 
 export function Integration({ chatbot }: { chatbot: any }) {
   const [extended, setExtended] = useState(false);
+  const confettiRef = useRef<ConfettiRef>(null);
   return (
     <div>
       <div>
@@ -16,7 +18,7 @@ export function Integration({ chatbot }: { chatbot: any }) {
             <span className="w-3 h-3 rounded-full bg-green"></span>
           </div>
           <div className="bg-gray-100 border-t-0 w-full h-[60vh] rounded-b-lg relative">
-            <div className="w-full h-full">
+            <div className="relative w-full h-full">
               <Iframe
                 url={chatbot.website ?? ""}
                 width="100%"
@@ -26,6 +28,21 @@ export function Integration({ chatbot }: { chatbot: any }) {
                 display="initial"
                 position="relative"
               />
+              <div className=" absolute inset-0 w-full h-full flex items-center justify-center">
+                <div className="relative flex  h-[60%] w-[60%]  flex-col items-center justify-center overflow-hidden rounded-lg border bg-white/80 md:shadow-xl">
+                  <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-peach p-4 bg-clip-text text-center text-4xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
+                    Your Chatbot is all Set
+                  </span>
+
+                  <Confetti
+                    ref={confettiRef}
+                    className="absolute left-0 top-0 z-0 size-full"
+                    onMouseEnter={() => {
+                      confettiRef.current?.fire({});
+                    }}
+                  />
+                </div>
+              </div>
             </div>
             <div className="absolute bottom-4 right-4  ">
               {extended ? (
