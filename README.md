@@ -1,36 +1,216 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Beyond Chats Assignment
 
-## Getting Started
+#### Project Details
 
-First, run the development server:
+| Info             | Value                                           |
+| ---------------- | ----------------------------------------------- |
+| Project Name     | Beyond Chats Assignment                         |
+| Hosting Provider | Vercel                                          |
+| URL              | https://beyondchats-assignment-gamma.vercel.app |
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+#### Tech Stack
+
+| sl  | feature    | name               | desc                                      |
+| --- | ---------- | ------------------ | ----------------------------------------- |
+| 1   | db         | psql               | free tier neon db                         |
+| 2   | framework  | Next Js            | React Js  Framework by vercel             |
+| 3   | language   | Typescript         |                                           |
+| 4   | auth       | Google, Credential | provided by NextAuth,  supports  Oauth2.0 |
+| 5   | auth token | JWT                |                                           |
+| 6   | ORM        | Drizzle ORM        |                                           |
+
+#### DB shema
+
+```ts
+import {
+  pgSchema,
+  uuid,
+  varchar,
+  text,
+  timestamp,
+  pgTable,
+  PgEnumColumn,
+  boolean,
+  json,
+} from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+
+export const User = pgTable("users", {
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
+  name: varchar("name", { length: 255 }),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  company: varchar("company", { length: 255 }),
+  password: varchar("password", { length: 255 }),
+  isVerified: boolean("is_verified").default(false),
+  signUpType: varchar("sign_up_type", {
+    length: 255,
+    enum: ["password", "google"],
+  }),
+  logo: varchar("logo", { length: 500 }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .notNull()
+    .$onUpdateFn(() => sql`update users set updated_at = CURRENT_TIMESTAMP`),
+});
+
+export const Chatbot = pgTable("chatbot", {
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => User.id),
+  name: varchar("name", { length: 255 }),
+  prompt: varchar("prompt", { length: 255 }),
+  webpages: json("webpages"),
+  website: varchar("website", { length: 255 }),
+  avatar: varchar("avatar", { length: 500 }),
+  isActive: boolean("is_active").default(true),
+  isScrapped: boolean("is_scrapped").default(false),
+  token: varchar("token", { length: 255 }),
+  data: json("data"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .notNull()
+    .$onUpdateFn(() => sql`update chatbot set updated_at = CURRENT_TIMESTAMP`),
+});
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Back End Methods
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [x] API routes
+- [x] Server Actions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Tree Structure
 
-## Learn More
+├── components.json
+├── drizzle.config.ts
+├── eslint.config.mjs
+├── next.config.ts
+├── next-env.d.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── public
+│ ├── file.svg
+│ ├── globe.svg
+│ ├── illustrations
+│ │ ├── home.svg
+│ │ ├── login.png
+│ │ └── login.svg
+│ ├── images
+│ │ ├── google.svg
+│ │ └── logo.png
+│ ├── next.svg
+│ ├── vercel.svg
+│ └── window.svg
+├── README.md
+├── src
+│ ├── app
+│ │ ├── api
+│ │ │ ├── auth
+│ │ │ │ └── [...nextauth]
+│ │ │ │ └── route.tsx
+│ │ │ └── route.ts
+│ │ ├── globals.css
+│ │ ├── icon.png
+│ │ ├── layout.tsx
+│ │ ├── page.tsx
+│ │ ├── signin
+│ │ │ └── page.tsx
+│ │ ├── signup
+│ │ │ └── page.tsx
+│ │ └── user
+│ │ ├── bot
+│ │ │ └── [id]
+│ │ │ └── page.tsx
+│ │ └── page.tsx
+│ ├── auth.ts
+│ ├── components
+│ │ ├── chatbot
+│ │ │ ├── how.tsx
+│ │ │ ├── integration.tsx
+│ │ │ ├── main.tsx
+│ │ │ ├── styles.module.css
+│ │ │ └── test.tsx
+│ │ ├── devices
+│ │ │ └── desktop.tsx
+│ │ ├── input
+│ │ │ └── OtpInput.tsx
+│ │ ├── loader
+│ │ │ └── spinner.tsx
+│ │ ├── modal
+│ │ │ └── modal.tsx
+│ │ ├── nav
+│ │ │ ├── navbar.tsx
+│ │ │ └── signupButton.tsx
+│ │ ├── sign
+│ │ │ ├── signFormFilelds.tsx
+│ │ │ ├── signInForm.tsx
+│ │ │ └── signUpForm.tsx
+│ │ ├── ui
+│ │ │ ├── button
+│ │ │ │ └── interactiveButton.tsx
+│ │ │ ├── confetti.tsx
+│ │ │ └── globe.tsx
+│ │ └── user
+│ │ ├── addChatbot.tsx
+│ │ ├── chatBotList.tsx
+│ │ ├── dataPagination.tsx
+│ │ ├── dataTable.tsx
+│ │ ├── defaultComponent.tsx
+│ │ ├── profile.tsx
+│ │ ├── user.module.css
+│ │ └── uses.tsx
+│ ├── lib
+│ │ ├── actions
+│ │ │ ├── auth.action.ts
+│ │ │ ├── chatbot.action.ts
+│ │ │ └── user.action.ts
+│ │ ├── db
+│ │ │ ├── connection.ts
+│ │ │ ├── migrate.ts
+│ │ │ ├── migrations
+│ │ │ │ ├── 0000_happy_chameleon.sql
+│ │ │ │ ├── 0001_huge_glorian.sql
+│ │ │ │ ├── 0002_steady_george_stacy.sql
+│ │ │ │ ├── 0003_gray_photon.sql
+│ │ │ │ └── meta
+│ │ │ │ ├── 0000_snapshot.json
+│ │ │ │ ├── 0001_snapshot.json
+│ │ │ │ ├── 0002_snapshot.json
+│ │ │ │ ├── 0003_snapshot.json
+│ │ │ │ └── \_journal.json
+│ │ │ └── schema.ts
+│ │ ├── gemini.ts
+│ │ ├── helpers.ts
+│ │ ├── settings
+│ │ │ └── settings.ts
+│ │ └── utils.ts
+│ └── middleware.ts
+├── tailwind.config.ts
+└── tsconfig.json
 
-To learn more about Next.js, take a look at the following resources:
+#### Output Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Landing Page
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![landing](./output/landing.png)
 
-## Deploy on Vercel
+Sign In Page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![signin](./output/signin.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+SignUp Page
+
+![signup](./output/signup.png)
+
+Chat Bot Page
+
+![User Dashboard](./output/userdash.png)
+
+Chatbot Page
+
+![Chat bot](./output/chat.png)
+
+![Chat bot](./output/chat2.png)

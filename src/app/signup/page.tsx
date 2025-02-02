@@ -2,6 +2,7 @@ import { signIn } from "@/auth";
 import { SignInForm } from "@/components/sign/signInForm";
 import { SignUpForm } from "@/components/sign/signUpForm";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Signin() {
   return (
@@ -54,6 +55,12 @@ export default function Signin() {
               height={24}
             />
           </button>
+          <div className="flex items-center gap-2 mt-4">
+            Already have an account ?{" "}
+            <Link href="/signin">
+              <span className="text-teal-500">Sign in</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

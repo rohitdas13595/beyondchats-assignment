@@ -1,6 +1,7 @@
 import { signIn } from "@/auth";
 import { SignInForm } from "@/components/sign/signInForm";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Signin() {
   return (
@@ -44,6 +45,13 @@ export default function Signin() {
               height={24}
             />
           </button>
+
+          <div className="flex items-center gap-2 mt-4">
+            New to Beyondchats ?{" "}
+            <Link href="/signup">
+              <span className="text-teal-500">Sign up</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
