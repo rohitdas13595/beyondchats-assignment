@@ -1,4 +1,4 @@
-## Beyond Chats Assignment
+## AI POWERED Chatbot
 
 #### Project Details
 
